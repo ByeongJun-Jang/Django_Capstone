@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+  width: 100%;
+  border-radius: 1rem;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+th {
+  background-color: #ccc;
+  text-align: center;
+}
+
+td {
+    width: 30px;
+  text-align: center;
+  height: 100px;
+}
+input[type="text"] {
+  display: block;
+  text-align: center;
+}
+</style>
+<body>
+        {% include 'header.html' %}
+        <hr>
+        {% block contents %}
+        <div style="width: 1000px; justify-content: center; margin: 0 auto;">
+            
+  <h1>시간표 입력</h1>
+  
+    <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+            <th>일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>오픈</td>
+            <td><input type="text" name="open_mon" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="open_tue" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="open_wed" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="open_thu" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="open_fri" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="open_sat" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="open_sun" maxlength="1" placeholder="O 또는 X"></td>
+          </tr>
+          <tr>
+            <td>중간</td>
+            <td><input type="text" name="mid_mon" maxlength="1" placeholder="O 또는 X" ></td>
+            <td><input type="text" name="mid_tue" maxlength="1" placeholder="O 또는 X" ></td>
+            <td><input type="text" name="mid_wed" maxlength="1" placeholder="O 또는 X" ></td>
+            <td><input type="text" name="mid_thu" maxlength="1" placeholder="O 또는 X" ></td>
+            <td><input type="text" name="mid_fri" maxlength="1" placeholder="O 또는 X" ></td>
+            <td><input type="text" name="mid_sat" maxlength="1" placeholder="O 또는 X" ></td>
+            <td><input type="text" name="mid_sun" maxlength="1"  placeholder="O 또는 X"></td>
+          </tr>
+          <tr>
+            <td>마감</td>
+            <td><input type="text" name="close_mon" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="close_tue" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="close_wed" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="close_thu" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="close_fri" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="close_sat" maxlength="1" placeholder="O 또는 X"></td>
+            <td><input type="text" name="close_sun" maxlength="1" placeholder="O 또는 X"></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <input type="submit" value="입력" style="align-items: center;">
+      <table id="resultTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+                <th>일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>오픈</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>중간</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>마감</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+        
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector("input[type=submit]").addEventListener("click", function() {
+            // 테이블에서 데이터를 가져와서 결과 테이블에 설정
+            const resultTable = document.getElementById("resultTable");
+    
+            // 각 셀에 입력된 값을 가져와서 설정
+            resultTable.querySelector("tbody tr:nth-child(1) td:nth-child(2)").textContent = document.querySelector("input[name=open_mon]").value;
+            resultTable.querySelector("tbody tr:nth-child(1) td:nth-child(3)").textContent = document.querySelector("input[name=open_tue]").value;
+            resultTable.querySelector("tbody tr:nth-child(1) td:nth-child(4)").textContent = document.querySelector("input[name=open_wed]").value;
+            resultTable.querySelector("tbody tr:nth-child(1) td:nth-child(5)").textContent = document.querySelector("input[name=open_thu]").value;
+            resultTable.querySelector("tbody tr:nth-child(1) td:nth-child(6)").textContent = document.querySelector("input[name=open_fri]").value;
+            resultTable.querySelector("tbody tr:nth-child(1) td:nth-child(7)").textContent = document.querySelector("input[name=open_sat]").value;
+            resultTable.querySelector("tbody tr:nth-child(1) td:nth-child(8)").textContent = document.querySelector("input[name=open_sun]").value;
+    
+            // 중간 부분 처리
+            resultTable.querySelector("tbody tr:nth-child(2) td:nth-child(2)").textContent = document.querySelector("input[name=mid_mon]").value;
+            resultTable.querySelector("tbody tr:nth-child(2) td:nth-child(3)").textContent = document.querySelector("input[name=mid_tue]").value;
+            resultTable.querySelector("tbody tr:nth-child(2) td:nth-child(4)").textContent = document.querySelector("input[name=mid_wed]").value;
+            resultTable.querySelector("tbody tr:nth-child(2) td:nth-child(5)").textContent = document.querySelector("input[name=mid_thu]").value;
+            resultTable.querySelector("tbody tr:nth-child(2) td:nth-child(6)").textContent = document.querySelector("input[name=mid_fri]").value;
+            resultTable.querySelector("tbody tr:nth-child(2) td:nth-child(7)").textContent = document.querySelector("input[name=mid_sat]").value;
+            resultTable.querySelector("tbody tr:nth-child(2) td:nth-child(8)").textContent = document.querySelector("input[name=mid_sun]").value;
+    
+            // 마감 부분 처리
+            resultTable.querySelector("tbody tr:nth-child(3) td:nth-child(2)").textContent = document.querySelector("input[name=close_mon]").value;
+            resultTable.querySelector("tbody tr:nth-child(3) td:nth-child(3)").textContent = document.querySelector("input[name=close_tue]").value;
+            resultTable.querySelector("tbody tr:nth-child(3) td:nth-child(4)").textContent = document.querySelector("input[name=close_wed]").value;
+            resultTable.querySelector("tbody tr:nth-child(3) td:nth-child(5)").textContent = document.querySelector("input[name=close_thu]").value;
+            resultTable.querySelector("tbody tr:nth-child(3) td:nth-child(6)").textContent = document.querySelector("input[name=close_fri]").value;
+            resultTable.querySelector("tbody tr:nth-child(3) td:nth-child(7)").textContent = document.querySelector("input[name=close_sat]").value;
+            resultTable.querySelector("tbody tr:nth-child(3) td:nth-child(8)").textContent = document.querySelector("input[name=close_sun]").value;
+    
+            // 다른 행에 대한 처리를 추가
+    
+        });
+    });
+    
+    </script>    
+</html>
